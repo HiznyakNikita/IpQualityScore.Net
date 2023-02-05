@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json.Linq;
 using System.Globalization;
 
-namespace IpQualityScore.Net.Extensions
+namespace IpQualityScore.Common.Extensions
 {
-	internal static class ObjectExtensions
+	public static class ObjectExtensions
 	{
 		public static IDictionary<string, string> ToKeyValue(this object obj)
 		{

@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace IpQualityScore.Net.Responses
+namespace IpQualityScore.Common.Responses
 {
-	internal class EmailValidationResponse : IpQualityScoreResponse
+	public class EmailValidationResponse : IpQualityScoreResponse
 	{
 		[JsonProperty("valid")]
 		public bool? Valid { get; set; }
@@ -87,7 +87,7 @@ namespace IpQualityScore.Net.Responses
 
 	}
 
-	internal class AssociatedNameResponse
+	public class AssociatedNameResponse
 	{
 		[JsonProperty("status")]
 		public string Status { get; set; }
@@ -96,7 +96,7 @@ namespace IpQualityScore.Net.Responses
 		public string[] Names { get; set; }
 	}
 
-	internal class AssociatedPhoneNumberResponse
+	public class AssociatedPhoneNumberResponse
 	{
 		[JsonProperty("status")]
 		public string Status { get; set; }
@@ -105,7 +105,7 @@ namespace IpQualityScore.Net.Responses
 		public string[] PhoneNumbers { get; set; }
 	}
 
-	internal class EmailValidationFirstSeenResponse
+	public class EmailValidationFirstSeenResponse
 	{
 		[JsonProperty("human")]
 		public string Human { get; set; }
@@ -117,7 +117,7 @@ namespace IpQualityScore.Net.Responses
 		public string Iso { get; set; }
 	}
 
-	internal class EmailValidationDomainAgeResponse
+	public class EmailValidationDomainAgeResponse
 	{
 		[JsonProperty("human")]
 		public string Human { get; set; }

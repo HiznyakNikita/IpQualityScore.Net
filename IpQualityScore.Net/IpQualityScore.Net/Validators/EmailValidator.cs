@@ -1,21 +1,20 @@
 ﻿using AutoMapper;
-using IpQualityScore.Net.Exceptions;
-using IpQualityScore.Net.Extensions;
-using IpQualityScore.Net.Queries;
+using IpQualityScore.Common.Extensions;
 using IpQualityScore.Net.Requests;
-using IpQualityScore.Net.Responses;
 using IpQualityScore.Net.Results;
 using Newtonsoft.Json;
+using IpQualityScore.Common;
+using IpQualityScore.Common.Responses;
+using IpQualityScore.Common.Queries;
 
 namespace IpQualityScore.Net.Validators
 {
 	internal class EmailValidator: IIpQualityScoreValidator<EmailValidationResult, EmailValidationRequest>
 	{
-		private const string _path = "email";
-		private readonly string _url;
 		private readonly IMapper _mapper;
+		private readonly IIpQualityScoreApiClient _ipQualityScoreApiClient;
 
-		public EmailValidator(string apiKey, string baseUrl)
+		public EmailValidator(IIpQualityScoreApiClient ipQualityScoreApiClient)
 		{
 			var mapperConfig = new MapperConfiguration(cfg =>
 			{
@@ -28,7 +27,7 @@ namespace IpQualityScore.Net.Validators
 			});
 			_mapper = mapperConfig.CreateMapper();
 
-			_url = $"{baseUrl}{_path}/{apiKey}";
+			_ipQualityScoreApiClient = ipQualityScoreApiClient;
 		}
 
 		public async Task<EmailValidationResult> Validate(EmailValidationRequest request)
@@ -37,26 +36,10 @@ namespace IpQualityScore.Net.Validators
 				throw new ArgumentException(nameof(request));
 
 			var query = _mapper.Map<EmailValidationQuery>(request);
-			var client = new HttpClient();
-			var apiRequest = new HttpRequestMessage
-			{
-				Method = HttpMethod.Get,
-				RequestUri = new Uri($"{_url}/{request.Email}?{await query.ToUrlEncodedString()}")
-			};
-			using (var response = await client.SendAsync(apiRequest))
-			{
-				response.EnsureSuccessStatusCode();
-				var body = await response.Content.ReadAsStringAsync();
-				var result = JsonConvert.DeserializeObject<EmailValidationResponse>(body);
-				if (result is null)
-					throw new Exception($"Error occurred while validation: {request.Email}");
-				if (!result.Success.GetValueOrDefault())
-				{
-					throw new IpQualityScoreException(result.RequestId, result.Message);
-				}
+			var response = await _ipQualityScoreApiClient.Get<EmailValidationQuery, EmailValidationResponse>(query, new[] { request.Email });
+			var result = _mapper.Map<EmailValidationResult>(response);
 
-				return _mapper.Map<EmailValidationResult>(result);
-			}
+			return result;
 		}
 	}
 }

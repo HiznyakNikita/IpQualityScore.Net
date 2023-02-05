@@ -1,6 +1,13 @@
-﻿using IpQualityScore.Net.Requests;
+﻿using IpQualityScore.Net.Extensions;
+using IpQualityScore.Net.Requests;
+using Microsoft.Extensions.DependencyInjection;
 
 var apiKey = "";
+var serviceProvider = new ServiceCollection()
+			.AddIpQualityScore(apiKey)
+			.BuildServiceProvider();
+
+
 var request = new EmailValidationRequest()
 {
 	Email = "",
@@ -11,7 +18,8 @@ var request = new EmailValidationRequest()
 	Timeout = 30
 };
 
-var IpQualityScore = new IpQualityScore.Net.IpQualityScore(apiKey);
+var IpQualityScore = serviceProvider
+	.GetService< IpQualityScore.Net.IpQualityScore>();
 
 try
 {
