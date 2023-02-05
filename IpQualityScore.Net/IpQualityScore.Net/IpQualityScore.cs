@@ -1,4 +1,5 @@
-﻿using IpQualityScore.Net.Results;
+﻿using IpQualityScore.Net.Requests;
+using IpQualityScore.Net.Results;
 using IpQualityScore.Net.Validators;
 
 namespace IpQualityScore.Net
@@ -8,7 +9,7 @@ namespace IpQualityScore.Net
 		private readonly string _apiKey;
 		private readonly string _baseUrl;
 
-		public IIpQualityScoreValidator<EmailValidationResult, string> Email { get; init; }
+		public IIpQualityScoreValidator<EmailValidationResult, EmailValidationRequest> Email { get; init; }
 
 		public IpQualityScore(string apiKey)
 		{

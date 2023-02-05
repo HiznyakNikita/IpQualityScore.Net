@@ -2,7 +2,7 @@
 
 namespace IpQualityScore.Net.Results
 {
-	public class EmailValidationResponse
+	internal class EmailValidationResponse
 	{
 		[JsonProperty("valid")]
 		public bool? Valid { get; set; }
@@ -96,7 +96,7 @@ namespace IpQualityScore.Net.Results
 
 	}
 
-	public class AssociatedNameResponse
+	internal class AssociatedNameResponse
 	{
 		[JsonProperty("status")]
 		public string Status { get; set; }
@@ -105,7 +105,7 @@ namespace IpQualityScore.Net.Results
 		public string[] Names { get; set; }
 	}
 
-	public class AssociatedPhoneNumberResponse
+	internal class AssociatedPhoneNumberResponse
 	{
 		[JsonProperty("status")]
 		public string Status { get; set; }
@@ -114,7 +114,7 @@ namespace IpQualityScore.Net.Results
 		public string[] PhoneNumbers { get; set; }
 	}
 
-	public class EmailValidationFirstSeenResponse
+	internal class EmailValidationFirstSeenResponse
 	{
 		[JsonProperty("human")]
 		public string Human { get; set; }
@@ -126,7 +126,7 @@ namespace IpQualityScore.Net.Results
 		public string Iso { get; set; }
 	}
 
-	public class EmailValidationDomainAgeResponse
+	internal class EmailValidationDomainAgeResponse
 	{
 		[JsonProperty("human")]
 		public string Human { get; set; }

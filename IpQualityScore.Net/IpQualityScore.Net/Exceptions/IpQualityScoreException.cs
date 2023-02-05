@@ -11,12 +11,12 @@ namespace IpQualityScore.Net.Exceptions
 			RequestId = requestId;
 		}
 
-		public IpQualityScoreException(string requestId, string? message) : base(message)
+		public IpQualityScoreException(string requestId, string message) : base(message)
 		{
 			RequestId = requestId;
 		}
 
-		public IpQualityScoreException(string requestId, string? message, Exception? innerException) : base(message, innerException)
+		public IpQualityScoreException(string requestId, string message, Exception innerException) : base(message, innerException)
 		{
 			RequestId = requestId;
 		}
