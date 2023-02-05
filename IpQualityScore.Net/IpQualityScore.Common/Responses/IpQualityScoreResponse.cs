@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json;
 
-namespace IpQualityScore.Net.Responses
+namespace IpQualityScore.Common.Responses
 {
-	internal class IpQualityScoreResponse
+	public class IpQualityScoreResponse
 	{
 		[JsonProperty("request_id")]
 		public string RequestId { get; set; }

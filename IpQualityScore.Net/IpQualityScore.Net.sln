@@ -5,7 +5,9 @@ VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IpQualityScore.Net", "IpQualityScore.Net\IpQualityScore.Net.csproj", "{DA690C2C-01D7-454F-B371-A1BC891F1E72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IpQualityScore.Examples", "IpQualityScore.Examples\IpQualityScore.Examples.csproj", "{D7978DDA-472B-4763-A9CE-C9640980DBB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IpQualityScore.Examples", "IpQualityScore.Examples\IpQualityScore.Examples.csproj", "{D7978DDA-472B-4763-A9CE-C9640980DBB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IpQualityScore.Common", "IpQualityScore.Common\IpQualityScore.Common.csproj", "{D668D09A-0ABD-445C-8028-976A3AD71F1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{D7978DDA-472B-4763-A9CE-C9640980DBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7978DDA-472B-4763-A9CE-C9640980DBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7978DDA-472B-4763-A9CE-C9640980DBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D668D09A-0ABD-445C-8028-976A3AD71F1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D668D09A-0ABD-445C-8028-976A3AD71F1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D668D09A-0ABD-445C-8028-976A3AD71F1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D668D09A-0ABD-445C-8028-976A3AD71F1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

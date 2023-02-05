@@ -1,8 +1,10 @@
-﻿using Newtonsoft.Json;
+﻿using IpQualityScore.Common.Attributes;
+using Newtonsoft.Json;
 
-namespace IpQualityScore.Net.Queries
+namespace IpQualityScore.Common.Queries
 {
-	internal class EmailValidationQuery
+	[ApiRoute("email")]
+	public class EmailValidationQuery : IpQualityScoreQuery
 	{
 
 		[JsonProperty("fast")]

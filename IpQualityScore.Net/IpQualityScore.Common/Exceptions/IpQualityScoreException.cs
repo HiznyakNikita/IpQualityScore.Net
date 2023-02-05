@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace IpQualityScore.Net.Exceptions
+namespace IpQualityScore.Common.Exceptions
 {
 	internal class IpQualityScoreException : Exception
 	{
