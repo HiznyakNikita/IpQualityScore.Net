@@ -1,9 +1,9 @@
 ﻿using IpQualityScore.Net.Requests;
 
-var apiKey = "bKaxzWxXop1bJ0bRM6KyQZ1SCpKKJqeD";
+var apiKey = "";
 var request = new EmailValidationRequest()
 {
-	Email = "hiznyaknikita1996@gmail.com",
+	Email = "",
 	Fast = true,
 	AbuseStrictness = 2,
 	Strictness = 2,
@@ -15,8 +15,12 @@ var IpQualityScore = new IpQualityScore.Net.IpQualityScore(apiKey);
 
 try
 {
-	var result = await IpQualityScore.Email.Validate(request);
-	Console.WriteLine($"Is email valid: {result.Valid}");
+	var resultValidation = await IpQualityScore.Email.Validate(request);
+	Console.WriteLine($"Is email valid: {resultValidation.Valid}");
+
+	var resultReport = await IpQualityScore.Reports.Send(new ReportRequest() { Email = "bad_email@example.com" });
+	Console.WriteLine($"{resultReport.Success} {resultReport.Message} {resultReport.RequestId}");
+
 }
 catch (Exception ex)
 {

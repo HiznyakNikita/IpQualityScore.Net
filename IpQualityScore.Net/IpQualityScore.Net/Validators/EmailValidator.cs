@@ -3,6 +3,7 @@ using IpQualityScore.Net.Exceptions;
 using IpQualityScore.Net.Extensions;
 using IpQualityScore.Net.Queries;
 using IpQualityScore.Net.Requests;
+using IpQualityScore.Net.Responses;
 using IpQualityScore.Net.Results;
 using Newtonsoft.Json;
 
@@ -14,7 +15,7 @@ namespace IpQualityScore.Net.Validators
 		private readonly string _url;
 		private readonly IMapper _mapper;
 
-		public EmailValidator(string apiKey, string baseUrl): base()
+		public EmailValidator(string apiKey, string baseUrl)
 		{
 			var mapperConfig = new MapperConfiguration(cfg =>
 			{
