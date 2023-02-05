@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IpQualityScore.Net", "IpQualityScore.Net\IpQualityScore.Net.csproj", "{DA690C2C-01D7-454F-B371-A1BC891F1E72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IpQualityScore.Examples", "IpQualityScore.Examples\IpQualityScore.Examples.csproj", "{D7978DDA-472B-4763-A9CE-C9640980DBB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA690C2C-01D7-454F-B371-A1BC891F1E72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA690C2C-01D7-454F-B371-A1BC891F1E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA690C2C-01D7-454F-B371-A1BC891F1E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA690C2C-01D7-454F-B371-A1BC891F1E72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7978DDA-472B-4763-A9CE-C9640980DBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7978DDA-472B-4763-A9CE-C9640980DBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7978DDA-472B-4763-A9CE-C9640980DBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7978DDA-472B-4763-A9CE-C9640980DBB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E811987A-F1F7-4217-ADD0-0222B5E7176C}
+	EndGlobalSection
+EndGlobal
