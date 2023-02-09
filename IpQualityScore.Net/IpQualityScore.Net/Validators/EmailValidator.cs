@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using IpQualityScore.Common.Extensions;
 using IpQualityScore.Net.Requests;
 using IpQualityScore.Net.Results;
-using Newtonsoft.Json;
 using IpQualityScore.Common;
 using IpQualityScore.Common.Responses;
 using IpQualityScore.Common.Queries;

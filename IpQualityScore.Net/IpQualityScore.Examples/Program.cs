@@ -7,27 +7,39 @@ var serviceProvider = new ServiceCollection()
 			.AddIpQualityScore(apiKey)
 			.BuildServiceProvider();
 
-
-var request = new EmailValidationRequest()
-{
-	Email = "",
-	Fast = true,
-	AbuseStrictness = 2,
-	Strictness = 2,
-	SuggestDomain = true,
-	Timeout = 30
-};
-
 var IpQualityScore = serviceProvider
 	.GetService< IpQualityScore.Net.IpQualityScore>();
 
 try
 {
-	var resultValidation = await IpQualityScore.Email.Validate(request);
-	Console.WriteLine($"Is email valid: {resultValidation.Valid}");
+	if (IpQualityScore is not null)
+	{
+		var emailValidationRequest = new EmailValidationRequest()
+		{
+			Email = "",
+			Fast = true,
+			AbuseStrictness = 2,
+			Strictness = 2,
+			SuggestDomain = true,
+			Timeout = 30
+		};
+		var resultValidation = await IpQualityScore.Email.Validate(emailValidationRequest);
+		Console.WriteLine($"Is email valid: {resultValidation.Valid}");
 
-	var resultReport = await IpQualityScore.Reports.Send(new ReportRequest() { Email = "bad_email@example.com" });
-	Console.WriteLine($"{resultReport.Success} {resultReport.Message} {resultReport.RequestId}");
+		var resultReport = await IpQualityScore.Reports.Send(new ReportRequest() { Email = "bad_email@example.com" });
+		Console.WriteLine($"{resultReport.Success} {resultReport.Message} {resultReport.RequestId}");
+
+		var transactionValidationRequest = new TransactionRiskScoringRequest()
+		{
+			IpAddress = "",
+			Strictness = 1,
+			BillingEmail = "",
+			BillingCountry = ""
+
+		};
+		var transactionValidationResult = await IpQualityScore.Transaction.Validate(transactionValidationRequest);
+		Console.WriteLine($"Risk factors: {string.Join(",", transactionValidationResult.TransactionDetails.RiskFactors)}");
+	}
 
 }
 catch (Exception ex)
