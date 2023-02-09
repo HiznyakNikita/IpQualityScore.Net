@@ -9,6 +9,7 @@ namespace IpQualityScore.Net
 	public class IpQualityScore
 	{
 		public IIpQualityScoreValidator<EmailValidationResult, EmailValidationRequest> Email { get; init; }
+		public IIpQualityScoreValidator<TransactionRiskScoringResult, TransactionRiskScoringRequest> Transaction { get; init; }
 		public IReportsSender Reports { get; set; }
 
 		public IpQualityScore(IIpQualityScoreApiClient ipQualityScoreApiClient)
@@ -16,6 +17,7 @@ namespace IpQualityScore.Net
 
 			Email = new EmailValidator(ipQualityScoreApiClient);
 			Reports = new ReportsSender(ipQualityScoreApiClient);
+			Transaction = new TransactionValidator(ipQualityScoreApiClient);
 		}
 	}
 }
