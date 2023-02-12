@@ -1,4 +1,4 @@
-﻿using System.Diagnostics;
+﻿using FluentValidation;
 
 namespace IpQualityScore.Net.Requests
 {
@@ -74,5 +74,13 @@ namespace IpQualityScore.Net.Requests
 		public bool Recurring { get; set; }
 
 		public long RecurringTimes { get; set; }
+	}
+
+	public class TransactionRiskScoringRequestValidator : AbstractValidator<TransactionRiskScoringRequest>
+	{
+		public TransactionRiskScoringRequestValidator()
+		{
+			RuleFor(x => x.IpAddress).NotEmpty();
+		}
 	}
 }

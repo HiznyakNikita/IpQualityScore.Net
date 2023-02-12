@@ -7,7 +7,7 @@ using IpQualityScore.Net.Results;
 
 namespace IpQualityScore.Net.Validators
 {
-	internal class TransactionValidator : IIpQualityScoreValidator<TransactionRiskScoringResult, TransactionRiskScoringRequest>
+	internal class TransactionValidator : IpQualityScoreBaseValidator, IIpQualityScoreValidator<TransactionRiskScoringResult, TransactionRiskScoringRequest>
 	{
 		private readonly IMapper _mapper;
 		private readonly IIpQualityScoreApiClient _ipQualityScoreApiClient;
@@ -29,6 +29,7 @@ namespace IpQualityScore.Net.Validators
 		{
 			if (request == null)
 				throw new ArgumentException(nameof(request));
+			ValidateRequest<TransactionRiskScoringRequestValidator, TransactionRiskScoringRequest>(request);
 
 			var query = _mapper.Map<TransactionRiskScoringQuery>(request);
 			var response = await _ipQualityScoreApiClient.Get<TransactionRiskScoringQuery, TransactionScoringResponse>(query, new[] { request.IpAddress });

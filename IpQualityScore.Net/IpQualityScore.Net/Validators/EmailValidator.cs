@@ -7,7 +7,7 @@ using IpQualityScore.Common.Queries;
 
 namespace IpQualityScore.Net.Validators
 {
-	internal class EmailValidator: IIpQualityScoreValidator<EmailValidationResult, EmailValidationRequest>
+	internal class EmailValidator: IpQualityScoreBaseValidator, IIpQualityScoreValidator<EmailValidationResult, EmailValidationRequest>
 	{
 		private readonly IMapper _mapper;
 		private readonly IIpQualityScoreApiClient _ipQualityScoreApiClient;
@@ -32,6 +32,7 @@ namespace IpQualityScore.Net.Validators
 		{
 			if (request == null)
 				throw new ArgumentException(nameof(request));
+			ValidateRequest<EmailValidationRequestValidator, EmailValidationRequest>(request);
 
 			var query = _mapper.Map<EmailValidationQuery>(request);
 			var response = await _ipQualityScoreApiClient.Get<EmailValidationQuery, EmailValidationResponse>(query, new[] { request.Email });
