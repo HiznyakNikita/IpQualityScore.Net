@@ -1,9 +1,10 @@
 ﻿using IpQualityScore.Common.Attributes;
+using IpQualityScore.Common.Queries.Common;
 using Newtonsoft.Json;
 
 namespace IpQualityScore.Common.Queries
 {
-	[ApiRoute("report")]
+    [ApiRoute("report")]
 	public class ReportQuery : IpQualityScoreQuery
 	{
 		[JsonProperty("email")]

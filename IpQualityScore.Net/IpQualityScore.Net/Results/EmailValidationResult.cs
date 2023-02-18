@@ -1,4 +1,6 @@
-﻿namespace IpQualityScore.Net.Results
+﻿using IpQualityScore.Net.Results.Common;
+
+namespace IpQualityScore.Net.Results
 {
 	public class EmailValidationResult
 	{
@@ -26,10 +28,8 @@
 		public AssociatedPhoneNumber AssociatedPhoneNumbers { get; set; }
 		public string SpamTrapScore { get; set; }
 		public EmailFirstSeen FirstSeen { get; set; }
-		public EmailDomainAge DomainAge { get; set; }
+		public DomainAge DomainAge { get; set; }
 		public string SanitizedEmail { get; set; }
-		public string[] Errors { get; set; }
-
 	}
 
 	public class AssociatedName
@@ -50,15 +50,6 @@
 		
 		public int Timestamp { get; set; }
 		
-		public string Iso { get; set; }
-	}
-
-	public class EmailDomainAge
-	{
-		public string Human { get; set; }
-
-		public int Timestamp { get; set; }
-
 		public string Iso { get; set; }
 	}
 }

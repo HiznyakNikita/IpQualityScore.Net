@@ -2,13 +2,13 @@
 using IpQualityScore.Net.Requests;
 using IpQualityScore.Net.Results;
 using IpQualityScore.Common;
-using IpQualityScore.Common.Responses;
 using IpQualityScore.Common.Queries;
 using static IpQualityScore.Net.Requests.ReportRequest;
+using IpQualityScore.Common.Responses.Common;
 
 namespace IpQualityScore.Net.Reports
 {
-	internal class ReportsSender: IReportsSender
+    internal class ReportsSender: IReportsSender
 	{
 		private readonly IMapper _mapper;
 		private readonly IIpQualityScoreApiClient _ipQualityScoreApiClient;

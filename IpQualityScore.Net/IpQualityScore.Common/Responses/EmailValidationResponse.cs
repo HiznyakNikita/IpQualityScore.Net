@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using IpQualityScore.Common.Responses.Common;
+using Newtonsoft.Json;
 
 namespace IpQualityScore.Common.Responses
 {
-	public class EmailValidationResponse : IpQualityScoreResponse
+    public class EmailValidationResponse : IpQualityScoreResponse
 	{
 		[JsonProperty("valid")]
 		public bool? Valid { get; set; }
@@ -77,13 +78,10 @@ namespace IpQualityScore.Common.Responses
 		public EmailValidationFirstSeenResponse FirstSeen { get; set; }
 
 		[JsonProperty("domain_age")]
-		public EmailValidationDomainAgeResponse DomainAge { get; set; }
+		public DomainAgeResponse DomainAge { get; set; }
 
 		[JsonProperty("sanitized_email")]
 		public string SanitizedEmail { get; set; }
-
-		[JsonProperty("errors")]
-		public string[] Errors { get; set; }
 
 	}
 
@@ -113,18 +111,6 @@ namespace IpQualityScore.Common.Responses
 		[JsonProperty("timestamp")]
 		public int Timestamp { get; set; }
 		
-		[JsonProperty("iso")]
-		public string Iso { get; set; }
-	}
-
-	public class EmailValidationDomainAgeResponse
-	{
-		[JsonProperty("human")]
-		public string Human { get; set; }
-
-		[JsonProperty("timestamp")]
-		public int Timestamp { get; set; }
-
 		[JsonProperty("iso")]
 		public string Iso { get; set; }
 	}

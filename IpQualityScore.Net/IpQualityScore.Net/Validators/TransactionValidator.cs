@@ -4,10 +4,11 @@ using IpQualityScore.Common.Responses;
 using IpQualityScore.Common;
 using IpQualityScore.Net.Requests;
 using IpQualityScore.Net.Results;
+using IpQualityScore.Net.Validators.Common;
 
 namespace IpQualityScore.Net.Validators
 {
-	internal class TransactionValidator : IpQualityScoreBaseValidator, IIpQualityScoreValidator<TransactionRiskScoringResult, TransactionRiskScoringRequest>
+    internal class TransactionValidator : IpQualityScoreBaseValidator, IIpQualityScoreValidator<TransactionRiskScoringResult, TransactionRiskScoringRequest>
 	{
 		private readonly IMapper _mapper;
 		private readonly IIpQualityScoreApiClient _ipQualityScoreApiClient;

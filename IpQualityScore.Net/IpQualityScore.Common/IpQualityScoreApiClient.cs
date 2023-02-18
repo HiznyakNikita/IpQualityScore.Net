@@ -1,13 +1,13 @@
 ﻿using IpQualityScore.Common.Attributes;
 using IpQualityScore.Common.Exceptions;
 using IpQualityScore.Common.Extensions;
-using IpQualityScore.Common.Queries;
-using IpQualityScore.Common.Responses;
+using IpQualityScore.Common.Queries.Common;
+using IpQualityScore.Common.Responses.Common;
 using Newtonsoft.Json;
 
 namespace IpQualityScore.Common
 {
-	internal class IpQualityScoreApiClient : IIpQualityScoreApiClient
+    internal class IpQualityScoreApiClient : IIpQualityScoreApiClient
 	{
 		private readonly HttpClient _httpClient;
 		private readonly string _apiKey;
@@ -43,7 +43,7 @@ namespace IpQualityScore.Common
 					throw new Exception($"Error occurred while request to: {requestUrl}");
 				if (!ipQualityScoreResponse.Success.GetValueOrDefault())
 				{
-					throw new IpQualityScoreException(ipQualityScoreResponse.RequestId, ipQualityScoreResponse.Message);
+					throw new IpQualityScoreException(ipQualityScoreResponse.RequestId, ipQualityScoreResponse.Errors, ipQualityScoreResponse.Message);
 				}
 
 				return ipQualityScoreResponse;

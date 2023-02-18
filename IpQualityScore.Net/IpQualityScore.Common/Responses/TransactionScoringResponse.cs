@@ -1,8 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using IpQualityScore.Common.Responses.Common;
+using Newtonsoft.Json;
 
 namespace IpQualityScore.Common.Responses
 {
-	public class TransactionScoringResponse : IpQualityScoreResponse
+    public class TransactionScoringResponse : IpQualityScoreResponse
 	{
 		[JsonProperty("proxy")]
 		public bool? Proxy { get; set; }
