@@ -23,8 +23,8 @@ try
 			SuggestDomain = true,
 			Timeout = 30
 		};
-		var resultValidation = await IpQualityScore.Email.Validate(emailValidationRequest);
-		Console.WriteLine($"Is email valid: {resultValidation.Valid}");
+		var emailValidationResult = await IpQualityScore.Email.Validate(emailValidationRequest);
+		Console.WriteLine($"Is email {emailValidationRequest.Email} valid: {emailValidationResult.Valid}");
 
 		var resultReport = await IpQualityScore.Reports.Send(new ReportRequest() { Email = "bad_email@example.com" });
 		Console.WriteLine($"{resultReport.Success} {resultReport.Message} {resultReport.RequestId}");
@@ -39,6 +39,16 @@ try
 		};
 		var transactionValidationResult = await IpQualityScore.Transaction.Validate(transactionValidationRequest);
 		Console.WriteLine($"Risk factors: {string.Join(",", transactionValidationResult.TransactionDetails.RiskFactors)}");
+
+		var urlValidationRequest = new UrlValidationRequest()
+		{
+			Url = "",
+			Fast = true,
+			Strictness = 2,
+			Timeout = 30
+		};
+		var urlValidationResult = await IpQualityScore.Url.Validate(urlValidationRequest);
+		Console.WriteLine($"Is url {urlValidationRequest.Url} safe: {!urlValidationResult.Unsafe}");
 	}
 
 }

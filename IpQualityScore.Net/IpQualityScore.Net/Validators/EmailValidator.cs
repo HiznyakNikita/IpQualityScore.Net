@@ -4,10 +4,13 @@ using IpQualityScore.Net.Results;
 using IpQualityScore.Common;
 using IpQualityScore.Common.Responses;
 using IpQualityScore.Common.Queries;
+using IpQualityScore.Net.Results.Common;
+using IpQualityScore.Common.Responses.Common;
+using IpQualityScore.Net.Validators.Common;
 
 namespace IpQualityScore.Net.Validators
 {
-	internal class EmailValidator: IpQualityScoreBaseValidator, IIpQualityScoreValidator<EmailValidationResult, EmailValidationRequest>
+    internal class EmailValidator: IpQualityScoreBaseValidator, IIpQualityScoreValidator<EmailValidationResult, EmailValidationRequest>
 	{
 		private readonly IMapper _mapper;
 		private readonly IIpQualityScoreApiClient _ipQualityScoreApiClient;
@@ -19,7 +22,7 @@ namespace IpQualityScore.Net.Validators
 				cfg.CreateMap<EmailValidationResponse, EmailValidationResult>();
 				cfg.CreateMap<AssociatedNameResponse, AssociatedName>();
 				cfg.CreateMap<AssociatedPhoneNumberResponse, AssociatedPhoneNumber>();
-				cfg.CreateMap<EmailValidationDomainAgeResponse, EmailDomainAge>();
+				cfg.CreateMap<DomainAgeResponse, DomainAge>();
 				cfg.CreateMap<EmailValidationFirstSeenResponse, EmailFirstSeen>();
 				cfg.CreateMap<EmailValidationRequest, EmailValidationQuery>();
 			});
