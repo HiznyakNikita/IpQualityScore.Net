@@ -9,5 +9,8 @@ namespace IpQualityScore.Common.Queries
 	{
 		[JsonProperty("email")]
 		public string Email { get; set; }
+
+		[JsonProperty("ip")]
+		public string Ip { get; set; }
 	}
 }
