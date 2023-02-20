@@ -5,7 +5,16 @@ namespace IpQualityScore.Common.Extensions
 {
 	public static class ObjectExtensions
 	{
-		public static IDictionary<string, string> ToKeyValue(this object obj)
+		public static async Task<string> ToUrlEncodedString(this object obj)
+		{
+			var keyValueContent = obj.ToKeyValue();
+			var formUrlEncodedContent = new FormUrlEncodedContent(keyValueContent);
+			var urlEncodedString = await formUrlEncodedContent.ReadAsStringAsync();
+
+			return urlEncodedString;
+		}
+
+		private static IDictionary<string, string> ToKeyValue(this object obj)
 		{
 			if (obj == null)
 			{
@@ -36,24 +45,16 @@ namespace IpQualityScore.Common.Extensions
 
 			var jValue = token as JValue;
 			if (jValue?.Value == null)
-			{
 				return null;
-			}
 
 			var value = jValue?.Type == JTokenType.Date ?
 							jValue?.ToString("o", CultureInfo.InvariantCulture) :
 							jValue?.ToString(CultureInfo.InvariantCulture);
 
+			if (string.IsNullOrEmpty(value))
+				return null;
+
 			return new Dictionary<string, string> { { token.Path, value } };
-		}
-
-		public static async Task<string> ToUrlEncodedString(this object obj)
-		{
-			var keyValueContent = obj.ToKeyValue();
-			var formUrlEncodedContent = new FormUrlEncodedContent(keyValueContent);
-			var urlEncodedString = await formUrlEncodedContent.ReadAsStringAsync();
-
-			return urlEncodedString;
 		}
 	}
 }

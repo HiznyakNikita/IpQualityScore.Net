@@ -11,7 +11,7 @@ namespace IpQualityScore.Common
 	{
 		private readonly HttpClient _httpClient;
 		private readonly string _apiKey;
-		private const string _baseUrl = "https://ipqualityscore.com/api/json";
+		private const string _baseUrl = "https://ipqualityscore.com/api/";
 
 		public IpQualityScoreApiClient(string apiKey)
 		{
@@ -19,35 +19,40 @@ namespace IpQualityScore.Common
 			_apiKey = apiKey;
 		}
 
-		public async Task<TResponse> Get<TQuery, TResponse>(TQuery query, string[] routeParts = null)
+		public async Task<TResponse> Get<TQuery, TResponse>(TQuery query, string[] routeParts = null, string format = "json")
 			where TResponse : IpQualityScoreResponse
 			where TQuery: IpQualityScoreQuery
 		{
-			var route = GetRouteForQuery(query);
-			var requestUrl = routeParts != null && routeParts.Any()
-				? $"{_baseUrl}/{route}/{_apiKey}/{string.Join("/", routeParts)}?{await query.ToUrlEncodedString()}"
-				: $"{_baseUrl}/{route}/{_apiKey}?{await query.ToUrlEncodedString()}";
-
-			var apiRequest = new HttpRequestMessage
+			if (format == "json")
 			{
-				Method = HttpMethod.Get,
-				RequestUri = new Uri(requestUrl)
-			};
-			using (var response = await _httpClient.SendAsync(apiRequest))
-			{
-				response.EnsureSuccessStatusCode();
-				var body = await response.Content.ReadAsStringAsync();
+				var route = GetRouteForQuery(query);
+				var requestUrl = routeParts != null && routeParts.Any()
+					? $"{_baseUrl}/{format}/{route}/{_apiKey}/{string.Join("/", routeParts)}?{await query.ToUrlEncodedString()}"
+					: $"{_baseUrl}/{format}/{route}/{_apiKey}?{await query.ToUrlEncodedString()}";
 
-				var ipQualityScoreResponse = JsonConvert.DeserializeObject<TResponse>(body);
-				if (ipQualityScoreResponse is null)
-					throw new Exception($"Error occurred while request to: {requestUrl}");
-				if (!ipQualityScoreResponse.Success.GetValueOrDefault())
+				var apiRequest = new HttpRequestMessage
 				{
-					throw new IpQualityScoreException(ipQualityScoreResponse.RequestId, ipQualityScoreResponse.Errors, ipQualityScoreResponse.Message);
-				}
+					Method = HttpMethod.Get,
+					RequestUri = new Uri(requestUrl)
+				};
+				using (var response = await _httpClient.SendAsync(apiRequest))
+				{
+					response.EnsureSuccessStatusCode();
+					var body = await response.Content.ReadAsStringAsync();
 
-				return ipQualityScoreResponse;
+					var ipQualityScoreResponse = JsonConvert.DeserializeObject<TResponse>(body);
+					if (ipQualityScoreResponse is null)
+						throw new Exception($"Error occurred while request to: {requestUrl}");
+					if (!ipQualityScoreResponse.Success.GetValueOrDefault())
+					{
+						throw new IpQualityScoreException(ipQualityScoreResponse.RequestId, ipQualityScoreResponse.Errors, ipQualityScoreResponse.Message);
+					}
+
+					return ipQualityScoreResponse;
+				}
 			}
+			else
+				throw new IpQualityScoreException(null, $"Format {format} not supported");
 		}
 
 		private string GetRouteForQuery<TQuery>(TQuery query)

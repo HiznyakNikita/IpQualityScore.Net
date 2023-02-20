@@ -7,6 +7,7 @@ namespace IpQualityScore.Common.Exceptions
 		public string RequestId { get; init; }
 		public string[] Errors { get; set; }
 
+
 		public IpQualityScoreException(string requestId) : base()
 		{
 			RequestId = requestId;

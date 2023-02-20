@@ -7,7 +7,7 @@ namespace IpQualityScore.Net.Extensions
 	{
 		public static void AddIpQualityScoreClient(this IServiceCollection services, string apiKey)
 		{
-			services.AddSingleton< IIpQualityScoreApiClient, IpQualityScoreApiClient>(x => {return new IpQualityScoreApiClient(apiKey);});
+			services.AddSingleton<IIpQualityScoreApiClient, IpQualityScoreApiClient>(x => {return new IpQualityScoreApiClient(apiKey);});
 		}
 	}
 }
