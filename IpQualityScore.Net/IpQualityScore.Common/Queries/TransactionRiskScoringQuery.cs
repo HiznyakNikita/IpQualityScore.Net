@@ -7,9 +7,6 @@ namespace IpQualityScore.Common.Queries
     [ApiRoute("ip")]
 	public class TransactionRiskScoringQuery: IpQualityScoreQuery
 	{
-		[JsonProperty("strictness")]
-		public int? Strictness { get; set; }
-
 		[JsonProperty("billing_first_name")]
 		public string BillingFirstName { get; set; }
 		

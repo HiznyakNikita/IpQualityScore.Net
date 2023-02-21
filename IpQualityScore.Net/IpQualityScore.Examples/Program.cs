@@ -49,6 +49,20 @@ try
 		};
 		var urlValidationResult = await IpQualityScore.Url.Validate(urlValidationRequest);
 		Console.WriteLine($"Is url {urlValidationRequest.Url} safe: {!urlValidationResult.Unsafe}");
+
+		var statsRequest = new StatsRequest()
+		{
+			Country = "",
+			EndDate = new DateOnly(2023, 2, 1),
+			StartDate = new DateOnly(2023, 2, 20),
+			CustomVariables = new Dictionary<string, string>()
+			{
+				{"UserId", "123123"},
+				{"myvariable", "22222" }
+			}
+		};
+		var stats = await IpQualityScore.Stats.Get(statsRequest);
+		Console.WriteLine($"Stats fraud average: {stats.FraudAverage}");
 	}
 
 }

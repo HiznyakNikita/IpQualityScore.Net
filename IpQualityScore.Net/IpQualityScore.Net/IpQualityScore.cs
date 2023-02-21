@@ -1,4 +1,5 @@
 ﻿using IpQualityScore.Common;
+using IpQualityScore.Net.Providers;
 using IpQualityScore.Net.Reports;
 using IpQualityScore.Net.Requests;
 using IpQualityScore.Net.Results;
@@ -14,6 +15,8 @@ namespace IpQualityScore.Net
 		public IReportsSender Reports { get; set; }
 		public IIpQualityScoreValidator<UrlValidationResult, UrlValidationRequest> Url { get; init; }
 
+		public IStatsProvider Stats { get; set; }
+
 		public IpQualityScore(IIpQualityScoreApiClient ipQualityScoreApiClient)
 		{
 
@@ -21,6 +24,7 @@ namespace IpQualityScore.Net
 			Url = new UrlValidator(ipQualityScoreApiClient);
 			Reports = new ReportsSender(ipQualityScoreApiClient);
 			Transaction = new TransactionValidator(ipQualityScoreApiClient);
+			Stats = new StatsProvider(ipQualityScoreApiClient);
 		}
 	}
 }
