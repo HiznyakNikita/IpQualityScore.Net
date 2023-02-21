@@ -1,5 +1,6 @@
 using IpQualityScore.Common.Extensions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace IpQualityScore.Common.Tests
 {
@@ -66,20 +67,20 @@ namespace IpQualityScore.Common.Tests
 		}
 
 		[TestMethod]
-		public async Task ToUrlEncodedString_WhenObjectWithDictionaryPropsProvided_ThenReturnCorrectUrlEncodedString()
+		public async Task ToUrlEncodedString_WhenObjectWithJsonExtensionDataPropsProvided_ThenReturnCorrectUrlEncodedString()
 		{
 			//Arrange
-			var objectWithNestedObjectProps = new ObjectWithDictionaryProp()
+			var objectWithNestedObjectProps = new ObjectWithJsonExtensionDataProp()
 			{
 				IntProp = 1,
-				DictProp = new Dictionary<string,string>()
+				JsonExtensionDataProp = new Dictionary<string,JToken>()
 				{
 					{"key1", "value1"},
 					{"key2", "value2"},
 					{"key3", "value3"}
 				}
 			};
-			var expectedUrlEncodedString = "intProp=1&dictProp.key1=value1&dictProp.key2=value2&dictProp.key3=value3";
+			var expectedUrlEncodedString = "intProp=1&key1=value1&key2=value2&key3=value3";
 			//Act
 			var resultUrlEncodedString = await objectWithNestedObjectProps.ToUrlEncodedString();
 			//Assert
@@ -96,6 +97,27 @@ namespace IpQualityScore.Common.Tests
 				EnumerableProp = new List<string>() {"value1", "value2", "value3"}
 			};
 			var expectedUrlEncodedString = "intProp=1&enumerableProp%5B0%5D=value1&enumerableProp%5B1%5D=value2&enumerableProp%5B2%5D=value3";
+			//Act
+			var resultUrlEncodedString = await objectWithNestedObjectProps.ToUrlEncodedString();
+			//Assert
+			Assert.AreEqual(expectedUrlEncodedString, resultUrlEncodedString);
+		}
+
+		[TestMethod]
+		public async Task ToUrlEncodedString_WhenObjectWithDictionaryPropsProvided_ThenReturnCorrectUrlEncodedString()
+		{
+			//Arrange
+			var objectWithNestedObjectProps = new ObjectWithDictionaryProp()
+			{
+				IntProp = 1,
+				DictProp = new Dictionary<string, string>()
+				{
+					{"key1", "value1"},
+					{"key2", "value2"},
+					{"key3", "value3"}
+				}
+			};
+			var expectedUrlEncodedString = "intProp=1&dictProp.key1=value1&dictProp.key2=value2&dictProp.key3=value3";
 			//Act
 			var resultUrlEncodedString = await objectWithNestedObjectProps.ToUrlEncodedString();
 			//Assert
@@ -127,6 +149,15 @@ namespace IpQualityScore.Common.Tests
 
 			[JsonProperty("objProp2")]
 			public object ObjProp2 { get; set; }
+		}
+
+		private class ObjectWithJsonExtensionDataProp
+		{
+			[JsonProperty("intProp")]
+			public int IntProp { get; set; }
+
+			[JsonExtensionData]
+			public IDictionary<string, JToken> JsonExtensionDataProp { get; set; }
 		}
 
 		private class ObjectWithDictionaryProp

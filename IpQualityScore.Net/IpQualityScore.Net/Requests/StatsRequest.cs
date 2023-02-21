@@ -1,4 +1,6 @@
-﻿namespace IpQualityScore.Net.Requests
+﻿using FluentValidation;
+
+namespace IpQualityScore.Net.Requests
 {
 	public class StatsRequest
 	{
