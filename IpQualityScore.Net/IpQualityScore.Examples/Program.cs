@@ -72,6 +72,16 @@ try
 		};
 		var requestsResult = await IpQualityScore.Requests.Get(requestApiRequest);
 		Console.WriteLine($"Requests: {string.Join(";", requestsResult.Requests.Select(r => r.RequestId))}");
+
+		var creditRequest = new CreditRequest()
+		{
+		};
+		var creditResult = await IpQualityScore.Credits.Get(creditRequest);
+		Console.WriteLine(@$"Credits: {creditResult.Credits};
+Usage: {creditResult.Usage}; 
+EmailUsage: {creditResult.EmailUsage}; 
+ProxyUsage: {creditResult.ProxyUsage}; 
+FingerprintUsage: {creditResult.FingerprintUsage}");
 	}
 
 }
