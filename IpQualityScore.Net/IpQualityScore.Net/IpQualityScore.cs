@@ -17,8 +17,8 @@ namespace IpQualityScore.Net
 		public IIpQualityScoreValidator<UrlValidationResult, UrlValidationRequest> Url { get; init; }
 
 		public IStatsProvider Stats { get; set; }
-
 		public IIpQualityScoreRequestsProvider Requests { get; set; }
+		public ICreditProvider Credits { get; set; }
 
 		public IpQualityScore(IIpQualityScoreApiClient ipQualityScoreApiClient)
 		{
@@ -29,6 +29,7 @@ namespace IpQualityScore.Net
 			Transaction = new TransactionValidator(ipQualityScoreApiClient);
 			Stats = new StatsProvider(ipQualityScoreApiClient);
 			Requests = new IpQualityScoreRequestsProvider(ipQualityScoreApiClient);
+			Credits = new CreditProvider(ipQualityScoreApiClient);
 		}
 	}
 }
