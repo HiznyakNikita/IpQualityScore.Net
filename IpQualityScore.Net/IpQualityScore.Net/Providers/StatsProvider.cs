@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using IpQualityScore.Common.Queries;
-using IpQualityScore.Common.Responses.Common;
 using IpQualityScore.Common;
 using IpQualityScore.Net.Requests;
 using IpQualityScore.Net.Results;
-using static IpQualityScore.Net.Requests.ReportRequest;
 using IpQualityScore.Common.Responses;
+using IpQualityScore.Net.Providers.Contract;
+using IpQualityScore.Net.Providers.Common;
 
 namespace IpQualityScore.Net.Providers
 {
-	internal class StatsProvider : IStatsProvider
+	internal class StatsProvider : IpQualityScoreBaseProvider, IStatsProvider
 	{
 		private readonly IMapper _mapper;
 		private readonly IIpQualityScoreApiClient _ipQualityScoreApiClient;
