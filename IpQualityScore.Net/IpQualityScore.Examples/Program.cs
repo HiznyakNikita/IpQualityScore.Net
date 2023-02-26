@@ -63,6 +63,15 @@ try
 		};
 		var stats = await IpQualityScore.Stats.Get(statsRequest);
 		Console.WriteLine($"Stats fraud average: {stats.FraudAverage}");
+
+		var requestApiRequest = new IpQualityScoreRequestApiRequest()
+		{
+			Type = IpQualityScoreRequestType.Email,
+			StartDate = new DateTime(2023, 1, 1),
+			StopDate = new DateTime(2023, 2, 26)
+		};
+		var requestsResult = await IpQualityScore.Requests.Get(requestApiRequest);
+		Console.WriteLine($"Requests: {string.Join(";", requestsResult.Requests.Select(r => r.RequestId))}");
 	}
 
 }

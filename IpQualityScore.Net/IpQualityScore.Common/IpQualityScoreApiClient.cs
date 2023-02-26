@@ -52,21 +52,19 @@ namespace IpQualityScore.Common
 
 				try
 				{
-					using (var response = await _httpClient.SendAsync(apiRequest))
+					using var response = await _httpClient.SendAsync(apiRequest);
+					response.EnsureSuccessStatusCode();
+					var body = await response.Content.ReadAsStringAsync();
+
+					var ipQualityScoreResponse = JsonConvert.DeserializeObject<TResponse>(body);
+					if (ipQualityScoreResponse is null)
+						throw new Exception($"Error occurred while request to: {requestUrl}");
+					if (!ipQualityScoreResponse.Success.GetValueOrDefault())
 					{
-						response.EnsureSuccessStatusCode();
-						var body = await response.Content.ReadAsStringAsync();
-
-						var ipQualityScoreResponse = JsonConvert.DeserializeObject<TResponse>(body);
-						if (ipQualityScoreResponse is null)
-							throw new Exception($"Error occurred while request to: {requestUrl}");
-						if (!ipQualityScoreResponse.Success.GetValueOrDefault())
-						{
-							throw new IpQualityScoreException(ipQualityScoreResponse.RequestId, ipQualityScoreResponse.Errors, ipQualityScoreResponse.Message);
-						}
-
-						return ipQualityScoreResponse;
+						throw new IpQualityScoreException(ipQualityScoreResponse.RequestId, ipQualityScoreResponse.Errors, ipQualityScoreResponse.Message);
 					}
+
+					return ipQualityScoreResponse;
 				}
 				catch(HttpRequestException ex)
 				{
@@ -77,7 +75,7 @@ namespace IpQualityScore.Common
 				throw new IpQualityScoreException(null, $"Incorrect route: {route} or request url {requestUrl}");
 		}
 
-		private string GetRouteForQuery<TQuery>(TQuery query)
+		private static string GetRouteForQuery<TQuery>(TQuery query)
 			where TQuery: IpQualityScoreQuery
 		{
 			var attribute = query.GetType().GetCustomAttributes(false)

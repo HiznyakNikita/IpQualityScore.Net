@@ -1,5 +1,6 @@
 ﻿using IpQualityScore.Common;
 using IpQualityScore.Net.Providers;
+using IpQualityScore.Net.Providers.Contract;
 using IpQualityScore.Net.Reports;
 using IpQualityScore.Net.Requests;
 using IpQualityScore.Net.Results;
@@ -17,6 +18,8 @@ namespace IpQualityScore.Net
 
 		public IStatsProvider Stats { get; set; }
 
+		public IIpQualityScoreRequestsProvider Requests { get; set; }
+
 		public IpQualityScore(IIpQualityScoreApiClient ipQualityScoreApiClient)
 		{
 
@@ -25,6 +28,7 @@ namespace IpQualityScore.Net
 			Reports = new ReportsSender(ipQualityScoreApiClient);
 			Transaction = new TransactionValidator(ipQualityScoreApiClient);
 			Stats = new StatsProvider(ipQualityScoreApiClient);
+			Requests = new IpQualityScoreRequestsProvider(ipQualityScoreApiClient);
 		}
 	}
 }
