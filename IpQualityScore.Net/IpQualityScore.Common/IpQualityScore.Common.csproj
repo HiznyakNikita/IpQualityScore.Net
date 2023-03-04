@@ -11,5 +11,8 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="7.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="IpQualityScore.Common.Tests" />
+  </ItemGroup>
 
 </Project>
