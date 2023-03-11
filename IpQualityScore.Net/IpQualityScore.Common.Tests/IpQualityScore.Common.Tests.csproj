@@ -5,6 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
 
     <IsPackable>false</IsPackable>
+
+    <AssemblyVersion>1.0.3.3</AssemblyVersion>
+
+    <FileVersion>1.0.3.3</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
