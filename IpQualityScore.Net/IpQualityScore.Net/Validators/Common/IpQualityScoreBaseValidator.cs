@@ -13,7 +13,7 @@ namespace IpQualityScore.Net.Validators.Common
             if (!validationResult.IsValid)
             {
                 throw new RequestValidationException(validationResult.Errors.ToDictionary(e => e.PropertyName, e => e.ErrorMessage),
-                    $"Error while {nameof(TRequest)} validation");
+                    $"Error while {typeof(TRequest).Name} validation");
             }
         }
     }
