@@ -8,10 +8,10 @@
     <PackageId>$(AssemblyName)</PackageId>
     <Authors>Khyzhniak Mykyta</Authors>
     <RepositoryUrl>https://github.com/HiznyakNikita/IpQualityScore.Net</RepositoryUrl>
-    <AssemblyVersion>1.0.5.4</AssemblyVersion>
-    <FileVersion>1.0.6.5</FileVersion>
+    <AssemblyVersion>1.0.7.6</AssemblyVersion>
+    <FileVersion>1.0.8.7</FileVersion>
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
-    <Version>1.0.4</Version>
+    <Version>1.0.6</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
@@ -24,6 +24,7 @@
     <PackageVersionSettings>AssemblyVersion.IncrementWithAutoReset.None</PackageVersionSettings>
     <AssemblyInfoVersionType>SettingsVersion</AssemblyInfoVersionType>
     <InheritWinAppVersionFrom>None</InheritWinAppVersionFrom>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
   </PropertyGroup>
 
   <ItemGroup>
@@ -34,7 +35,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IpQualityScore.Common\IpQualityScore.Common.csproj" />
+    <ProjectReference Include="..\IpQualityScore.Common\IpQualityScore.Common.csproj">
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <IncludeAssets>IpQualityScore.Common.dll</IncludeAssets>
+    </ProjectReference>
   </ItemGroup>
+  <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+    </ItemGroup>
+  </Target>
 
 </Project>

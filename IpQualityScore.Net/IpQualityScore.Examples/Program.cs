@@ -2,13 +2,13 @@
 using IpQualityScore.Net.Requests;
 using Microsoft.Extensions.DependencyInjection;
 
-var apiKey = "";
+var apiKey = "my_api_key";
 var serviceProvider = new ServiceCollection()
 			.AddIpQualityScore(apiKey)
 			.BuildServiceProvider();
 
 var IpQualityScore = serviceProvider
-	.GetService< IpQualityScore.Net.IpQualityScore>();
+	.GetService<IpQualityScore.Net.IpQualityScore>();
 
 try
 {
@@ -26,7 +26,8 @@ try
 		var emailValidationResult = await IpQualityScore.Email.Validate(emailValidationRequest);
 		Console.WriteLine($"Is email {emailValidationRequest.Email} valid: {emailValidationResult.Valid}");
 
-		var resultReport = await IpQualityScore.Reports.Send(new ReportRequest() { Email = "bad_email@example.com" });
+		var resultReportRequest = new ReportRequest() { Email = "bad_email@example.com" };
+		var resultReport = await IpQualityScore.Reports.Send(resultReportRequest);
 		Console.WriteLine($"{resultReport.Success} {resultReport.Message} {resultReport.RequestId}");
 
 		var transactionValidationRequest = new TransactionRiskScoringRequest()
