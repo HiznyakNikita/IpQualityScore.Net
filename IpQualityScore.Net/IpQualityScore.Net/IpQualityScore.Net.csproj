@@ -8,8 +8,8 @@
     <PackageId>$(AssemblyName)</PackageId>
     <Authors>Khyzhniak Mykyta</Authors>
     <RepositoryUrl>https://github.com/HiznyakNikita/IpQualityScore.Net</RepositoryUrl>
-    <AssemblyVersion>1.0.10.9</AssemblyVersion>
-    <FileVersion>1.0.11.10</FileVersion>
+    <AssemblyVersion>1.0.12.11</AssemblyVersion>
+    <FileVersion>1.0.13.12</FileVersion>
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
     <Version>1.0.9</Version>
   </PropertyGroup>
@@ -35,14 +35,22 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\IpQualityScore.Common\IpQualityScore.Common.csproj">
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-      <IncludeAssets>IpQualityScore.Common.dll</IncludeAssets>
-    </ProjectReference>
+    <ProjectReference Include="..\IpQualityScore.Common\IpQualityScore.Common.csproj" PrivateAssets="All" />
   </ItemGroup>
-  <Target DependsOnTargets="ResolveReferences" Name="CopyProjectReferencesToPackage">
+
+  <PropertyGroup>
+    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage</TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="BuildOnlySettings;ResolveReferences">
     <ItemGroup>
-      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+      <_ReferenceCopyLocalPaths Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference')-&gt;WithMetadataValue('PrivateAssets', 'All'))" />
+    </ItemGroup>
+
+    <Message Text="Batch for .nupkg: ReferenceCopyLocalPaths = @(_ReferenceCopyLocalPaths), ReferenceCopyLocalPaths.DestinationSubDirectory = %(_ReferenceCopyLocalPaths.DestinationSubDirectory) Filename = %(_ReferenceCopyLocalPaths.Filename) Extension = %(_ReferenceCopyLocalPaths.Extension)" Importance="High" Condition="'@(_ReferenceCopyLocalPaths)' != ''" />
+
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(_ReferenceCopyLocalPaths)" TargetPath="%(_ReferenceCopyLocalPaths.DestinationSubDirectory)" />
     </ItemGroup>
   </Target>
 

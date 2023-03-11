@@ -2,7 +2,7 @@
 using IpQualityScore.Net.Requests;
 using Microsoft.Extensions.DependencyInjection;
 
-var apiKey = "my_api_key";
+var apiKey = "bKaxzWxXop1bJ0bRM6KyQZ1SCpKKJqeD";
 var serviceProvider = new ServiceCollection()
 			.AddIpQualityScore(apiKey)
 			.BuildServiceProvider();
