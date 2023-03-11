@@ -8,10 +8,10 @@
     <PackageId>$(AssemblyName)</PackageId>
     <Authors>Khyzhniak Mykyta</Authors>
     <RepositoryUrl>https://github.com/HiznyakNikita/IpQualityScore.Net</RepositoryUrl>
-    <AssemblyVersion>1.0.7.6</AssemblyVersion>
-    <FileVersion>1.0.8.7</FileVersion>
+    <AssemblyVersion>1.0.9.8</AssemblyVersion>
+    <FileVersion>1.0.10.9</FileVersion>
     <PackageOutputPath>$(OutputPath)</PackageOutputPath>
-    <Version>1.0.6</Version>
+    <Version>1.0.8</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
