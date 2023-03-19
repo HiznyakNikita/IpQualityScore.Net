@@ -1,9 +1,8 @@
-﻿using AutoMapper.Configuration.Annotations;
-using IpQualityScore.Net.Results.Common;
+﻿using IpQualityScore.Net.Results.Common;
 
 namespace IpQualityScore.Net.Results
 {
-	public class UrlValidationResult
+	public class UrlValidationResult: IpQualityScoreRequestResult
 	{
 		/// <summary>
 		/// Is this domain suspected of being unsafe due to phishing, malware, spamming, or abusive behavior? View the confidence level by analyzing the "risk_score".

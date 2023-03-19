@@ -1,5 +1,6 @@
 ﻿using IpQualityScore.Net.Extensions;
 using IpQualityScore.Net.Requests;
+using IpQualityScore.Net.Results;
 using Microsoft.Extensions.DependencyInjection;
 
 var apiKey = "";
@@ -71,7 +72,7 @@ try
 			StartDate = new DateTime(2023, 1, 1),
 			StopDate = new DateTime(2023, 2, 26)
 		};
-		var requestsResult = await IpQualityScore.Requests.Get(requestApiRequest);
+		var requestsResult = await IpQualityScore.Requests.Get<EmailValidationResult>(requestApiRequest);
 		Console.WriteLine($"Requests: {string.Join(";", requestsResult.Requests.Select(r => r.RequestId))}");
 
 		var creditRequest = new CreditRequest()

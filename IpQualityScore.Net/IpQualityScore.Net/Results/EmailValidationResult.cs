@@ -1,9 +1,8 @@
 ﻿using IpQualityScore.Net.Results.Common;
-using System.Net;
 
 namespace IpQualityScore.Net.Results
 {
-	public class EmailValidationResult
+	public class EmailValidationResult: IpQualityScoreRequestResult
 	{
 		/// <summary>
 		/// Does this email address appear valid?

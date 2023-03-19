@@ -1,6 +1,8 @@
-﻿namespace IpQualityScore.Net.Results
+﻿using IpQualityScore.Net.Results.Common;
+
+namespace IpQualityScore.Net.Results
 {
-	public class CreditResult
+	public class CreditResult: IpQualityScoreRequestResult
 	{
 		/// <summary>
 		/// Allowed credits count.
