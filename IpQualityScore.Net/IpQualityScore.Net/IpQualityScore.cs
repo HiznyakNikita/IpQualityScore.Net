@@ -21,6 +21,12 @@ namespace IpQualityScore.Net
 		public IIpQualityScoreValidator<EmailValidationResult, EmailValidationRequest> Email { get; init; }
 
 		/// <summary>
+		/// Phone Validation API
+		/// <see href="https://www.ipqualityscore.com/documentation/phone-number-validation-api/overview">See more</see>
+		/// </summary>
+		public IIpQualityScoreValidator<PhoneValidationResult, PhoneValidationRequest> Phone { get; init; }
+
+		/// <summary>
 		/// Payment & Transaction Fraud Prevention API
 		/// <see href="https://www.ipqualityscore.com/documentation/proxy-detection/transaction-scoring">See more</see>
 		/// </summary>
@@ -66,6 +72,7 @@ namespace IpQualityScore.Net
 			Stats = new StatsProvider(ipQualityScoreApiClient);
 			Requests = new IpQualityScoreRequestListProvider(ipQualityScoreApiClient);
 			Credits = new CreditProvider(ipQualityScoreApiClient);
+			Phone = new PhoneValidator(ipQualityScoreApiClient);
 		}
 	}
 }

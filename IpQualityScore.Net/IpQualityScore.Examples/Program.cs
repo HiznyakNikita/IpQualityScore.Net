@@ -31,6 +31,20 @@ try
 		var resultReport = await IpQualityScore.Reports.Send(resultReportRequest);
 		Console.WriteLine($"{resultReport.Success} {resultReport.Message} {resultReport.RequestId}");
 
+		var phoneValidationRequest = new PhoneValidationRequest()
+		{
+			Phone = "+380443097050",
+			Strictness = 2,
+			Country = new string[] { "UA" },
+			Timeout = 30
+		};
+		var phoneValidationResult = await IpQualityScore.Phone.Validate(phoneValidationRequest);
+		Console.WriteLine($"Is phone {phoneValidationRequest.Phone} valid: {phoneValidationResult.Valid}");
+
+		var resultPhoneReportRequest = new ReportRequest() { Phone = "+311111111111", Country = "UA" };
+		var resultPhoneReport = await IpQualityScore.Reports.Send(resultPhoneReportRequest);
+		Console.WriteLine($"{resultPhoneReport.Success} {resultPhoneReport.Message} {resultPhoneReport.RequestId}");
+
 		var transactionValidationRequest = new TransactionRiskScoringRequest()
 		{
 			IpAddress = "",

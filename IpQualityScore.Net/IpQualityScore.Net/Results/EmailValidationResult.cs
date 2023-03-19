@@ -2,7 +2,7 @@
 
 namespace IpQualityScore.Net.Results
 {
-	public class EmailValidationResult: IpQualityScoreRequestResult
+	public class EmailValidationResult : IpQualityScoreRequestResult
 	{
 		/// <summary>
 		/// Does this email address appear valid?

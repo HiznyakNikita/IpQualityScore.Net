@@ -12,5 +12,11 @@ namespace IpQualityScore.Common.Queries
 
 		[JsonProperty("ip")]
 		public string Ip { get; set; }
+
+		[JsonProperty("phone")]
+		public string Phone { get; set; }
+
+		[JsonProperty("country")]
+		public string Country { get; set; }
 	}
 }
