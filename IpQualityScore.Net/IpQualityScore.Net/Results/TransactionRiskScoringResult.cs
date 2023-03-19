@@ -1,6 +1,8 @@
-﻿namespace IpQualityScore.Net.Results
+﻿using IpQualityScore.Net.Results.Common;
+
+namespace IpQualityScore.Net.Results
 {
-	public class TransactionRiskScoringResult
+	public class TransactionRiskScoringResult: IpQualityScoreRequestResult
 	{
 		/// <summary>
 		/// Is this IP address suspected to be a proxy? (SOCKS, Elite, Anonymous, VPN, Tor, etc.)

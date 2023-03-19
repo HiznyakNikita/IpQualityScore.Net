@@ -1,8 +1,9 @@
-﻿namespace IpQualityScore.Net.Results
+﻿using IpQualityScore.Net.Results.Common;
+
+namespace IpQualityScore.Net.Results
 {
-	public class ReportResult
+	public class ReportResult: IpQualityScoreRequestResult
 	{
-		public string RequestId { get; set; }
 		public bool? Success { get; set; }
 		public string Message { get; set; }
 	}

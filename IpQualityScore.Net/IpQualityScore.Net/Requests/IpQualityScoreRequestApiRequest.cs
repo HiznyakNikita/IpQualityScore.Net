@@ -68,7 +68,7 @@ namespace IpQualityScore.Net.Requests
 	{
 		public IpQualityScoreRequestApiRequestValidator()
 		{
-			RuleFor(x => x.Type).NotEmpty().IsInEnum();
+			RuleFor(x => x.Type).IsInEnum();
 			RuleFor(x => x.Page).GreaterThanOrEqualTo(1).When(p => p.Page.HasValue);
 			RuleFor(x => x.Limit).GreaterThanOrEqualTo(1).When(p => p.Limit.HasValue);
 			RuleFor(x => x.Limit).LessThanOrEqualTo(250).When(p => p.Limit.HasValue);

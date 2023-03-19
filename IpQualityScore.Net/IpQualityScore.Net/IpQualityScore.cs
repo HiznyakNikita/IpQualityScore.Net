@@ -48,7 +48,7 @@ namespace IpQualityScore.Net
 		/// Request List API
 		/// <see href="https://www.ipqualityscore.com/documentation/request-list/overview">See more</see> 
 		/// </summary>
-		public IIpQualityScoreRequestsProvider Requests { get; set; }
+		public IIpQualityScoreRequestListProvider Requests { get; set; }
 
 		/// <summary>
 		/// Credit Usage API
@@ -64,7 +64,7 @@ namespace IpQualityScore.Net
 			Reports = new ReportsSender(ipQualityScoreApiClient);
 			Transaction = new TransactionValidator(ipQualityScoreApiClient);
 			Stats = new StatsProvider(ipQualityScoreApiClient);
-			Requests = new IpQualityScoreRequestsProvider(ipQualityScoreApiClient);
+			Requests = new IpQualityScoreRequestListProvider(ipQualityScoreApiClient);
 			Credits = new CreditProvider(ipQualityScoreApiClient);
 		}
 	}
