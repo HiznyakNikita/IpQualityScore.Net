@@ -4,7 +4,14 @@ namespace IpQualityScore.Net.Requests
 {
 	public class ReportRequest
 	{
+		/// <summary>
+		/// Email for report
+		/// </summary>
 		public string Email { get; init; }
+
+		/// <summary>
+		/// IP for report
+		/// </summary>
 		public string Ip { get; init; }
 
 		public class ReportRequestValidator : AbstractValidator<ReportRequest>

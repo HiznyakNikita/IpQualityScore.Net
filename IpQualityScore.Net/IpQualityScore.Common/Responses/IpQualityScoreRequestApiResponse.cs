@@ -17,8 +17,8 @@ namespace IpQualityScore.Common.Responses
 		[JsonProperty("max_records_per_page")]
 		public int MaxRecordsPerPage { get; init; }
 
-		[JsonProperty("total_records")]
-		public int TotaRrecords { get; init; }
+		[JsonProperty("total_requests")]
+		public int TotaRequests { get; init; }
 
 		[JsonProperty("requests")]
 		public IReadOnlyCollection<IpQualityScoreApiRequest> Requests { get; init; }
