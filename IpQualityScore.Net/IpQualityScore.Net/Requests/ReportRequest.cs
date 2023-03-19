@@ -14,12 +14,24 @@ namespace IpQualityScore.Net.Requests
 		/// </summary>
 		public string Ip { get; init; }
 
+		/// <summary>
+		/// Phone for report
+		/// </summary>
+		public string Phone { get; init; }
+
+		/// <summary>
+		/// Country for phone report
+		/// </summary>
+		public string Country { get; init; }
+
 		public class ReportRequestValidator : AbstractValidator<ReportRequest>
 		{
 			public ReportRequestValidator()
 			{
-				RuleFor(m => m.Email).NotEmpty().When(m => string.IsNullOrEmpty(m.Ip));
-				RuleFor(m => m.Ip).NotEmpty().When(m => string.IsNullOrEmpty(m.Email));
+				RuleFor(m => m.Email).NotEmpty().When(m => string.IsNullOrEmpty(m.Ip) && string.IsNullOrEmpty(m.Phone) && string.IsNullOrEmpty(m.Country));
+				RuleFor(m => m.Ip).NotEmpty().When(m => string.IsNullOrEmpty(m.Email) && string.IsNullOrEmpty(m.Phone) && string.IsNullOrEmpty(m.Country));
+				RuleFor(m => m.Phone).NotEmpty().When(m => string.IsNullOrEmpty(m.Email) && string.IsNullOrEmpty(m.Ip));
+				RuleFor(m => m.Country).NotEmpty().When(m => !string.IsNullOrEmpty(m.Phone));
 			}
 		}
 	}
